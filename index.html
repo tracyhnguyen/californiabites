@@ -2,38 +2,48 @@
 <html>
 
 <head>
-    <title>LA TV Shows | Home</title>
-    <meta name="description" content="A Catalog of Shows Set in Los Angeles">
+    <link href="food.png" rel="shortcut icon">
+    <title>CA Bites!</title>
+    <meta name="description" content="A catalog of Yelp Eats 2024 ">
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript" src="scripts.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Georama:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 </head>
 
 <body>
     <header class="main-header">
-        <h1 class="title">LA TV Shows</h1>
+        <h1 class="title">California Bites!</h1>
     </header>
+    <h3>COLLECTION OF YELP'S TOP IN CA 2024</h3>
     <div id="card-container">
         
     </div>
     <div class="card" style="display: none;">
         <div class="card-content">
-            <h2>TV Show Title</h2>
-            <img src="" alt="TV Show Poster">
-            <ul>
-                <li>Bullet Point 1</li>
-                <li>Bullet Point 2</li>
-                <li>Bullet Point 3</li>
-            </ul>
+            <h2>Restaurant Name</h2>
+            <img class="photo" src="" alt="Restaurant Photo">
+            <p>Restaurant Information<br>Pricing | Cuisine</p>
+            <a href="https://www.google.com" target="_blank">
+                <img class="right" src="yelp.png" width=15% alt="Restaurant Yelp Link"></a>
         </div>
     </div>
     <div class="footer">
-        <button onclick="quoteAlert();">
-            Get A Quote!
+        <button onclick="randomizer();">
+            RANDOMIZE
         </button>
         <button onclick="removeLastCard();">
-            Remove A Card!
+            REMOVE LAST CARD
+        </button>
+        <button onclick="removeACard();">
+            REMOVE A CARD
         </button>
     </div>
+
+    <br><br><br><br><br><br>
+
 </body>
 
 </html>
