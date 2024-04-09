@@ -1,27 +1,10 @@
 /**
- * Data Catalog Project Starter Code - SEA Stage 2
- *
- * This file is where you should be doing most of your work. You should
- * also make changes to the HTML and CSS files, but we want you to prioritize
- * demonstrating your understanding of data structures, and you'll do that
- * with the JavaScript code you write in this file.
- * 
- * The comments in this file are only to help you learn how the starter code
- * works. The instructions for the project are in the README. That said, here
- * are the three things you should do first to learn about the starter code:
- * - 1 - Change something small in index.html or style.css, then reload your 
- *    browser and make sure you can see that change. 
- * - 2 - On your browser, right click anywhere on the page and select
- *    "Inspect" to open the browser developer tools. Then, go to the "console"
- *    tab in the new window that opened up. This console is where you will see
- *    JavaScript errors and logs, which is extremely helpful for debugging.
- *    (These instructions assume you're using Chrome, opening developer tools
- *    may be different on other browsers. We suggest using Chrome.)
- * - 3 - Add another string to the titles array a few lines down. Reload your
- *    browser and observe what happens. You should see a fourth "card" appear
- *    with the string you added to the array, but a broken image.
- * 
- */
+ * California Bites!
+ * by: Tracy Nguyen
+ * Date: April 9, 2024
+*/
+
+// ************************** DATASET **************************
 
 // Restaurant Object Template
 class Restaurant {
@@ -33,10 +16,6 @@ class Restaurant {
         this.reviewCount = reviewCount;
         this.yelpURL = yelpURL;
         this.imgURL = imgURL
-    }
-
-    addAlert() {
-        console.log(`${this.name} was created`);
     }
 }
 
@@ -71,14 +50,14 @@ const dataset = [
     "BAHN THAI",	                        "$11-30",	    "Thai",	        4.5,	3180,	"https://www.yelp.com/biz/bahn-thai-san-diego", "https://s3-media0.fl.yelpcdn.com/bphoto/9xQQqsXFX-4wp6ZrkgbllQ/o.jpg"
 ]
 
-    // This is an array of Restaurant Objects
-// Creating an instance
+// Create array of restaurant objects
 let restaurants = [];
 for (let i = 0; i < dataset.length; i+=7) {
     restaurants.push(new Restaurant(dataset[i], dataset[i+1], dataset[i+2], dataset[i+3], dataset[i+4],
         dataset[i+5], dataset[i+6]));
 }
 
+// ************************** CARD FUNCTIONS **************************
 
 // This function adds cards the page to display the data in the array
 function showCards() {
@@ -93,14 +72,14 @@ function showCards() {
         let yelpsURL = current.yelpURL;
 
         let dollars = current.price;
-        if (current.price == "Under $10") {
-            dollars = "$";
-        } else if (current.price == "$11-30") {
-            dollars = "$$";
-        } else if (current.price == "$31-60") {
-            dollars = "$$$";
-        } else {
-            dollars = "$$$$";
+        if (dollars != "$" & dollars != "$$" & dollars != "$$$" & dollars != "$$$$") {
+            let key = new Map();
+            key.set("Under $10", "$");
+            key.set("$11-30", "$$");
+            key.set("$31-60", "$$$");
+            key.set("Above $61", "$$$$");
+
+            dollars = key.get(dollars);
         }
 
         const nextCard = templateCard.cloneNode(true); // Copy the template card
@@ -110,6 +89,7 @@ function showCards() {
     }
 }
 
+// Set card values
 function editCardContent(card, newTitle, newPrice, newCuisine, newRating, 
     newRevCount, newImageURL, newYelpsURL) {
     card.style.display = "block";
@@ -131,8 +111,45 @@ function editCardContent(card, newTitle, newPrice, newCuisine, newRating,
     console.log("new Restaurant:", newTitle, "- html: ", card);
 }
 
+// ************************** EVENT LISTENERS **************************
+
 // This calls the addCards() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", showCards);
+
+// ************************** FILTER BUTTON FUNCTIONS **************************
+
+function filterByPrice() {
+    let key = new Map();
+    key.set("Under $10", 1);
+    key.set("$11-30", 2);
+    key.set("$31-60", 3);
+    key.set("Above $61", 4);
+    console.log(key.get(restaurants[0].price));
+    restaurants.sort((priceOne, priceTwo) => key.get(priceOne.price) - key.get(priceTwo.price));
+    showCards();
+}
+
+function filterByRating() {
+    restaurants.sort((ratingOne, ratingTwo) => ratingTwo.rating - ratingOne.rating);
+    showCards();
+}
+
+function filterByName() {
+    restaurants.sort((nameOne, nameTwo) => {
+        let nameA = nameOne.name.toLowerCase();
+        let nameB = nameTwo.name.toLowerCase();
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+        return 0;
+    });
+    showCards();
+}
+
+// ************************** FOOTER BUTTON FUNCTIONS **************************
 
 // Randomizes a restaurant
 function randomizer() {
@@ -142,9 +159,44 @@ function randomizer() {
         + restaurants[randomNum].rating + " stars!");
 }
 
-function removeLastCard() {
-    restaurants.pop(); // Remove last item in restaurants array
-    showCards(); // Call showCards again to refresh
+// Adds a restaurant card
+function addACard() {
+    console.log("Add a Card clicked!");
+    let newName = prompt("Enter restaurant name: ").toUpperCase();
+
+    // if no input entered, try again?
+    if (newName == "") {
+        if (confirm("You didn't enter a restaurant.\nTry again?"))
+        {
+            removeACard();
+        } else {
+            console.log("Try again cancelled.");
+        }
+
+    // if input provided, proceed to add
+    }else if (newName != null) {
+        let newPrice = 
+            prompt("Enter the price (in \"$\"): \n$ (Under $10)    $$ ($11-30)\n$$$ ($31-60)     $$$$ ($60+)");
+        let newCuisine = prompt("Enter cuisine: ").toUpperCase();
+        let newRating = prompt("Enter rating (stars): ");
+        let newReviewCount = prompt("Enter review count: ");
+        let newYelp = prompt("Enter Yelp Link (optional, leave blank): ");
+        let newImg = prompt("Enter restaurant photo (optional, leave blank): ");
+        if (newYelp == "" || newYelp == null) {
+            newYelp = "https://www.yelp.com";
+        }
+        if (newImg == "" || newImg == null) {
+            newImg = "pizza.png";
+        }
+
+        // create restaurant card
+        restaurants.push(new Restaurant(newName, newPrice, newCuisine, newRating, newReviewCount, newYelp, newImg))
+        showCards(); // Call showCards again to refresh        
+
+    // operation cancelled
+    } else {
+        console.log("Cancelled");
+    }
 }
 
 // Removes a restaurant based on the name the user picked
@@ -182,4 +234,9 @@ function removeACard() {
     } else {
         console.log("Cancelled");
     }
+}
+
+function removeLastCard() {
+    restaurants.pop(); // Remove last item in restaurants array
+    showCards(); // Call showCards again to refresh
 }

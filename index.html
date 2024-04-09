@@ -18,21 +18,38 @@
         <h1 class="title">California Bites!</h1>
     </header>
     <h3>COLLECTION OF YELP'S TOP IN CA 2024</h3>
+    
+    <div class="filters">
+        <h4>FILTER BY:</h4>
+        <button onclick="filterByPrice();">FILTER BY PRICE</button>
+        <button onclick="filterByRating();">FILTER BY RATING</button>
+        <button onclick="filterByName();">FILTER BY NAME</button>
+        <a href="https://tracyhnguyen.github.io/californiabites/">
+            <button>RESET ALL</button></a>
+    </div>
+
     <div id="card-container">
         
     </div>
+
     <div class="card" style="display: none;">
         <div class="card-content">
             <h2>Restaurant Name</h2>
+            
             <img class="photo" src="" alt="Restaurant Photo">
+            
             <p>Restaurant Information<br>Pricing | Cuisine</p>
-            <a href="https://www.google.com" target="_blank">
+            <a href="https://www.yelp.com" target="_blank">
                 <img class="right" src="yelp.png" width=15% alt="Restaurant Yelp Link"></a>
         </div>
     </div>
+
     <div class="footer">
         <button onclick="randomizer();">
             RANDOMIZE
+        </button>
+        <button onclick="addACard();">
+            ADD A CARD
         </button>
         <button onclick="removeACard();">
             REMOVE A CARD
