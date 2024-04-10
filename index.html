@@ -21,11 +21,12 @@
     
     <div class="filters">
         <h4>FILTER BY:</h4>
-        <button onclick="filterByPrice();">FILTER BY PRICE</button>
-        <button onclick="filterByRating();">FILTER BY RATING</button>
-        <button onclick="filterByName();">FILTER BY NAME</button>
+        <button class="btn" onclick="filterByPrice();">PRICE</button>
+        <button class="btn" onclick="filterByRating();">RATING</button>
+        <button class="btn" onclick="filterByName();">NAME</button>
+        <button class="btn" onclick="filterByCuisine();">CUISINE</button>
         <a href="https://tracyhnguyen.github.io/californiabites/">
-            <button>RESET ALL</button></a>
+            <button class="btn">RESET</button></a>
     </div>
 
     <div id="card-container">
@@ -45,18 +46,10 @@
     </div>
 
     <div class="footer">
-        <button onclick="randomizer();">
-            RANDOMIZE
-        </button>
-        <button onclick="addACard();">
-            ADD A CARD
-        </button>
-        <button onclick="removeACard();">
-            REMOVE A CARD
-        </button>
-        <button onclick="removeLastCard();">
-            REMOVE LAST CARD
-        </button>
+        <button class="btn" onclick="randomizer();">RANDOMIZE</button>
+        <button class="btn" onclick="addACard();">ADD A CARD</button>
+        <button class="btn" onclick="removeACard();">REMOVE A CARD</button>
+        <button class="btn" onclick="removeLastCard();">REMOVE LAST CARD</button>
     </div>
 
     <br><br><br><br><br><br>

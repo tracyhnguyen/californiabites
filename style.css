@@ -41,21 +41,17 @@ h4 {
 .filters {
     display: flex;
     justify-content: center;
-    padding: 8px 20px;
     height: 40px;
     width: 100%;
     color: white;
     font-family: "Georama";
     text-align: center;
-    border: none;
-    border-radius: 15px;
     font-size: 20px;
     font-weight: 500;
-    margin: 5px 5px 5px 5px;
+    margin: 10px;
 }
 
 .filters button {
-    padding-bottom: 32px;
     border: 3px solid white;
 }
 
@@ -109,6 +105,7 @@ p {
 .footer {
     position: fixed;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     background-color: rgb(255, 255, 0);
     padding: 10px;
@@ -122,11 +119,15 @@ p {
     height: 80px;
 }
 
-button {
+.footer button {
+    border: 3px solid black;
+}
+
+.btn {
     text-align: center;
     background-color: #000000;
-    border: none;
-    padding: 8px 20px;
+    /* top right bottom left*/
+    padding: 5px 15px 5px 15px;
     height: 40px;
     border-radius: 15px;
     color: white;
@@ -134,10 +135,10 @@ button {
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
-    margin: 5px 5px 5px 5px;
+    margin: 5px;
 }
 
-button:hover {
+.btn:hover {
     background-color: white;
     padding-bottom: 30px;
     color: black;

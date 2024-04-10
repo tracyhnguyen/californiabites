@@ -3,7 +3,6 @@
  * by: Tracy Nguyen
  * Date: April 9, 2024
 */
-
 // ************************** DATASET **************************
 
 // Restaurant Object Template
@@ -117,6 +116,16 @@ function editCardContent(card, newTitle, newPrice, newCuisine, newRating,
 document.addEventListener("DOMContentLoaded", showCards);
 
 // ************************** FILTER BUTTON FUNCTIONS **************************
+// Sort helper function
+function compare(itemA, itemB) {
+    if (itemA < itemB) {
+        return -1;
+    }
+    if (itemA > itemB) {
+        return 1;
+    }
+    return 0;
+}
 
 function filterByPrice() {
     let key = new Map();
@@ -130,7 +139,15 @@ function filterByPrice() {
 }
 
 function filterByRating() {
-    restaurants.sort((ratingOne, ratingTwo) => ratingTwo.rating - ratingOne.rating);
+    restaurants.sort((ratingOne, ratingTwo) => {
+        if (ratingOne.rating == ratingTwo.rating) {
+            let reviewCountA = ratingOne.reviewCount;
+            let reviewCountB = ratingTwo.reviewCount;
+            return compare(reviewCountB, reviewCountA);
+        } else {
+            return ratingTwo.rating - ratingOne.rating;
+        }
+    });
     showCards();
 }
 
@@ -145,6 +162,15 @@ function filterByName() {
             return 1;
         }
         return 0;
+    });
+    showCards();
+}
+
+function filterByCuisine() {
+    restaurants.sort((cuisineOne, cuisineTwo) => {
+        let cuisineA = cuisineOne.cuisine.toLowerCase();
+        let cuisineB = cuisineTwo.cuisine.toLowerCase();
+        return compare(cuisineA, cuisineB);
     });
     showCards();
 }
