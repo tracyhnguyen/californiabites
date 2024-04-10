@@ -193,11 +193,16 @@ table {
     flex-wrap: wrap;
 }
 
-table td {
+td {
     width: 50%;
     border: 5px solid white;
     border-radius: 15px;
     padding: 10px 25px 10px 25px;
+}
+
+td:hover {
+    background-color: white;
+    color: black;
 }
 
 #helpPage button {
